@@ -35,26 +35,26 @@ function notify(cliente, assunto, mensagem, value) {
     });
 }
 
-function cores(objeto,cor){
+function cores(objeto,cor,cor_texto){
     objeto.css({
         "background-color": cor,
-        "color": "white"
+        "color": cor_texto
     });
     objeto.next().css({
         "background-color": cor,
-        "color": "white"
+        "color": cor_texto
     });
     objeto.next().next().css({
         "background-color": cor,
-        "color": "white"
+        "color": cor_texto
     });
     objeto.next().next().next().css({
         "background-color": cor,
-        "color": "white"
+        "color": cor_texto
     });
     objeto.next().next().next().next().css({
         "background-color": cor,
-        "color": "white"
+        "color": cor_texto
     });
 }
 
@@ -63,15 +63,14 @@ function alerta() {
     var i = 0;
     $("div").each(function () {
         objeto = $(this).parent().parent().parent().parent();
-        if ($(this).text() == "New" && i > 0) {
+        if (($(this).text() == "New" && i > 0) && objeto.attr("class") != "ko-tab-strip__tabs_1nzeqt") {
             user = $(this).parent().parent().parent().parent().next().next().next().next().find("div").text();
             user = trim(user);
-            if (user != usuario && user != "") {
-                cores(objeto,"#fe3f32");
-
+            if (user != usuario) {
+                cores(objeto,"#fe3f32","white");
             }
             else if (user != "") {
-                cores(objeto,"#4a98e0");
+                cores(objeto,"#4a98e0","white");
             }
         }
         if($(this).text() == "Need to test"){
@@ -79,30 +78,35 @@ function alerta() {
             user = $(this).parent().parent().parent().parent().next().next().next().next().find("div").text();
             user = trim(user);
             if (user != usuario) {
-                cores(objeto,"#fe3f32");
+                cores(objeto,"#fe3f32","white");
             }
             else {
-                cores(objeto,"#f49c07");
-            }            
+                cores(objeto,"#f49c07","white");
+            }
         }
         if ($(this).text() == "Em Análise") {
-			if(objeto.attr("class") != "session_agent_cases_index__index_1qjm74"){
-				cores(objeto,"#e9ec80");
-			}
+            if(objeto.attr("class") != "session_agent_cases_index__index_1qjm74"){
+                cores(objeto,"#e9ec80","black");
+            }
         }
         if ($(this).text() == "Aguardando Correção") {
             if(objeto.attr("class") != "session_agent_cases_index__index_1qjm74") {
-                objeto(objeto,"#4d394b");
+                cores(objeto,"#4d394b","white");
+            }
+        }
+        if ($(this).text() == "Completed") {
+            if(objeto.attr("class") != "session_agent_cases_index__index_1qjm74") {
+                cores(objeto,"#36a148","white");
             }
         }
         if ($(this).text() == "Open") {
             user = $(this).parent().parent().parent().parent().next().next().next().next().find("div").text();
             user = trim(user);
             if (user != usuario) {
-                cores(objeto,"#fe3f32");
+                cores(objeto,"#fe3f32","white");
             }
             else {
-                cores(objeto,"#4a98e0");
+                cores(objeto,"#4a98e0","white");
             }
         }
         i++;
